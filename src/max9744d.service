@@ -2,11 +2,13 @@
 Description=max9744 Daemon
 After=multi-user.target
 
-
 [Service]
+Type=simple
+RemainAfterExit=yes
 ExecStartPre=/bin/mkdir -p /var/max9744
-ExecStart=/usr/bin/max9744d -f /var/max9744
-ExecStop=/bin/rm -r /var/max9744
+ExecStartPre=/bin/chmod go+x /var/max9744
+ExecStart=/usr/bin/max9744d -o allow_other -f /var/max9744
+ExecStopPost=/bin/rm -r /var/max9744
 
 [Install]
 WantedBy=default.target

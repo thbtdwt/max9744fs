@@ -14,8 +14,10 @@ set(SRC
     main.c
     )
 
+set(CMAKE_INSTALL_PREFIX "/" CACHE PATH "" FORCE)
+
 add_executable(${EXE} ${SRC})
 target_link_libraries(${EXE} ${FUSE_LIBRARIES})
 
 install(TARGETS ${EXE} DESTINATION usr/bin)
-install(TARGETS max9744d.service DESTINATION etc/systemd/system)
+install(FILES max9744d.service DESTINATION etc/systemd/system)
